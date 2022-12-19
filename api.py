@@ -28,7 +28,25 @@ class Data:
         }
         return info
 
+    def search(self, keyword, field):
+        with self.connection.cursor() as cursor:
+            sql = "SELECT * FROM `book` WHERE MATCH (title) AGAINST (%s)"
+            cursor.execute(sql, (keyword, ))
+            sql_result_list = cursor.fetchall()
+        info_list = [format(sql_result) for sql_result in sql_result_list]
+        return info_list
 
+    def format_info(self, sql_result):
+        info = {
+            'id': sql_result[0],
+            'title': sql_result[1],
+            'author': sql_result[2],
+            'language': sql_result[3],
+            'year': sql_result[4],
+            'extension': sql_result[5],
+            'source': sql_result[6],
+        }
+        return info
 
 
 if __name__ == '__main__':
