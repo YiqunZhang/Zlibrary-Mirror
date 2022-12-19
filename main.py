@@ -15,7 +15,16 @@ def search():
     res = data.search(keyword, 'title')
     return ''.join([str(r) for r in res])
 
-
+@app.route('/download/<id>')
+def download(id):
+    info = data.get(id)
+    if info is None:
+        return 'Not Found'
+    title = info['title']
+    extension = info['extension']
+    base_dir = '/Volumes/Data-Resource/R-Book-ZLibrary'
+    response = send_from_directory(base_dir, id, as_attachment=True, attachment_filename=title + '.' + extension)
+    return response
 
 if __name__ == '__main__':
     app.run()
