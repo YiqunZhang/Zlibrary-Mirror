@@ -33,10 +33,11 @@ class Data:
             sql = "SELECT * FROM `book` WHERE MATCH (title) AGAINST (%s)"
             cursor.execute(sql, (keyword, ))
             sql_result_list = cursor.fetchall()
-        info_list = [format(sql_result) for sql_result in sql_result_list]
+        info_list = [self.format_info(sql_result) for sql_result in sql_result_list]
         return info_list
 
-    def format_info(self, sql_result):
+    @staticmethod
+    def format_info(sql_result):
         info = {
             'id': sql_result[0],
             'title': sql_result[1],

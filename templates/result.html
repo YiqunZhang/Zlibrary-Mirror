@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zlibrary Mirror - Result</title>
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <th>书名</th>
+            <th>作者</th>
+            <th>出版社</th>
+            <th>下载</th>
+        </tr>
+        {% for info in info_list %}
+        <tr>
+            <td>{{ info['title'] }}</td>
+            <td>{{ info['author'] }}</td>
+            <td>{{ info['publisher'] }}</td>
+            <td><a href="/download/{{ info['id'] }}">下载</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

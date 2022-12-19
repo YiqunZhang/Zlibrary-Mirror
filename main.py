@@ -12,8 +12,10 @@ def hello_world():
 @app.route('/search')
 def search():
     keyword = request.args.get('keyword')
-    res = data.search(keyword, 'title')
-    return ''.join([str(r) for r in res])
+    info_list = data.search(keyword, 'title')
+    for info in info_list:
+        print(info)
+    return render_template('result.html', info_list=info_list)
 
 @app.route('/download/<id>')
 def download(id):
