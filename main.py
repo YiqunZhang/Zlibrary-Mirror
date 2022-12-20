@@ -13,8 +13,6 @@ def hello_world():
 def search():
     keyword = request.args.get('keyword')
     info_list = data.search(keyword, 'title')
-    for info in info_list:
-        print(info)
     return render_template('result.html', info_list=info_list)
 
 @app.route('/download/<id>')
