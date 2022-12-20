@@ -30,7 +30,7 @@ class Data:
 
     def search(self, keyword, field):
         with self.connection.cursor() as cursor:
-            sql = "SELECT * FROM `book` WHERE MATCH (title) AGAINST (%s)"
+            sql = "SELECT * FROM `book` WHERE MATCH (title) AGAINST (%s) LIMIT 100"
             cursor.execute(sql, (keyword, ))
             sql_result_list = cursor.fetchall()
         info_list = [self.format_info(sql_result) for sql_result in sql_result_list]

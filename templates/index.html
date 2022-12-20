@@ -6,19 +6,24 @@
 </head>
 <body>
 
-    <form action="/search", method="get">
         关键字: <input type="text" name="keyword"/>
         <br/>
         搜索范围: <input type="radio" value="title" name="range"/>书名
             <input type="radio" value="author" name="range"/>作者
             <input type="radio" value="publisher" name="range"/>出版社
         <br/>
-        搜索范围: <input type="checkbox" name="technology" value="title"/>书名
-            <input type="checkbox" name="technology" value="author"/>作者
-            <input type="checkbox" name="technology" value="publisher"/>出版社
-        <br/>
-        <input type="submit"/><!--提交按钮，属于表单域标签，但是用于触发form命令，不作为请求参数-->
-    </form>
+        <button type="submit" onclick="len()">搜索</button>
+
+    <script>
+        function len() {
+            var keyword = document.getElementsByName("keyword")[0].value;
+            if (keyword.length < 2) {
+                alert("输入长度最少为2");
+            }else{
+                location.href = "/search?keyword=" + keyword + "&range=" + document.getElementsByName("range")[0].value;
+            }
+        }
+    </script>
 
 </body>
 </html>
