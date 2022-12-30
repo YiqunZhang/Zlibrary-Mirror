@@ -1,12 +1,14 @@
 import pymysql
 import subprocess
+import multitasking
+multitasking
 
 class Data:
     def __init__(self):
         self.file_path = '/Volumes/Data-Resource/R-Book-ZLibrary'
         self.connection = pymysql.connect(
             host='10.10.5.6',
-            user=subprocess.getoutput('op read op://private/MySQL-DSM/username'),
+            user='root',
             password=subprocess.getoutput('op read op://private/MySQL-DSM/password'),
             database='zlibrary',
         )
@@ -48,6 +50,10 @@ class Data:
             'source': sql_result[6],
         }
         return info
+
+    @staticmethod
+    def create_sql():
+        pass
 
 
 if __name__ == '__main__':
